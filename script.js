@@ -10,6 +10,14 @@
 // button keyPress 
 function handleClickButton(event){
     const playerPressed=event.key
+    console.log(playerPressed)
+
+    // stop the game
+    if(playerPressed === "Escape"){
+        gameOver();
+    }
+
+
     console.log("player pressed", playerPressed)
     const currentAlphabet=document.getElementById("current-alphabet");
     const cuurentAlpha=currentAlphabet.innerText;
@@ -82,9 +90,18 @@ function play(){
 
 function gameOver(){
     hideElement("play-ground");
-    showElement("final-score")
+    showElement("final-score");
+    const lastScore =getTextElementValueById("current-score");
+    setTextElementById("game-score",lastScore);
+    const currentalphabet=getElementByTextId("current-alphabet");
+    
+    removeBackground(currentalphabet);
 }
 
-function playAgain(){
+function getElementByTextId(elementId){
     
+    const element=document.getElementById(elementId);
+    const text=element.innerText;
+
+    return text;
 }
